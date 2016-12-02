@@ -1515,14 +1515,21 @@ th {
     border-color: #E2DFD3;
     border-top-width: 0.07143em;
     border-top-style: solid;
-    padding-top: 1.42857em;
+    padding-top: 0.67857em;
   }
   div.item h2 {
     margin-top: 0em;
   }
+  div.item > * {
+    margin: 0.75em 0;
+  }
+  div.item .item-meta > span {
+    margin-right: 1.5em;
+    display: inline-block;
+  }
   div.item span.feature {
     display: inline-block;
-    margin-bottom: 1.5em;
+    margin: 0 0 0.75em;
     background-color: #E2DFD3;
     padding: 0.375em;
   }

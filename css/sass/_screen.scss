@@ -1104,15 +1104,24 @@ div.item {
     clear: both;
     overflow:hidden;
     border-color: $sand;
-    @include leading-border(1px, 1, $base-font-size, solid);
+    @include leading-border(1px, .5, $base-font-size, solid);
 
     h2 {
         @include leader(0);
     }
 
+    & > * {
+        margin: rhythm(.5) 0;
+    }
+
+    .item-meta > span {
+        margin-right: rhythm();
+        display: inline-block;
+    }
+
     span.feature {
         display: inline-block;
-        margin-bottom: rhythm();
+        margin: 0 0 rhythm(.5);
         background-color: $sand;
         padding: rhythm(.25);
     }
