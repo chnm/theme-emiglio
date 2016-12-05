@@ -1106,17 +1106,35 @@ div.item {
     border-color: $sand;
     @include leading-border(1px, .5, $base-font-size, solid);
 
-    h2 {
+    h3,
+    .item-descriptions,
+    .item-meta {
         @include leader(0);
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        span {
+            width: 49%;
+        }
     }
 
-    & > * {
+    h3 {
+        margin-bottom: rhythm(.5,1.125 * $base-font-size);
+    }
+
+    .item-meta {
+        width: 59%;
+        float: left;
         margin: rhythm(.5) 0;
     }
 
-    .item-meta > span {
-        margin-right: rhythm();
+    .item-features {
+        width: 39%;
         display: inline-block;
+        vertical-align: top;
+        margin: rhythm(.5) 0;
+        text-align: right;
     }
 
     span.feature {
