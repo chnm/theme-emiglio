@@ -43,3 +43,27 @@ function rpiGetElementText($record, $elementSetName, $elementName)
     }
     return $elementTexts;
 }
+
+function rpi_language_links()
+{
+    $languages = ['rus' => 'русский', 'eng' => 'English'];
+
+    $urlParams = $_GET;
+    $currentLang = (isset($_GET['lang'])) ? $_GET['lang'] : 'rus';
+    $inactiveLang = ($currentLang == 'rus') ? 'eng' : 'rus';
+
+    $urlParams['lang'] = $inactiveLang;
+    $langUrl = html_escape(url(array(), null, $urlParams));
+
+    $html = '';
+
+    foreach ($languages as $langKey => $langLabel) {
+        if ($langKey == $inactiveLang) {
+            $html .= "<a href='$langUrl'>" . $langLabel . "</a>";
+        } else {
+            $html .= "<span class='current'><strong>$langLabel</strong></span>";
+        }
+    }
+
+    return $html;
+}

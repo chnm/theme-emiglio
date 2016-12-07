@@ -1534,7 +1534,7 @@ th {
     border: 1px solid #ccc;
     background-color: #fff;
     float: left;
-    margin: 0 1.5em 1.5em 0;
+    margin: 0 1.5em 0.75em 0;
   }
 
   .items #primary .item-file img,
@@ -1607,18 +1607,31 @@ th {
     width: 400px;
   }
 
+  #languages,
   #sort-links {
-    margin: 0.375em 0 1.5em;
+    margin: 0.375em 0 1.5em 1.5em;
     float: right;
   }
 
+  .language-label,
+  .sort-label {
+    display: inline-block;
+    margin-right: 5px;
+  }
+
   #sort-links-list {
-    margin-left: 10px;
+    margin-left: 0;
     padding-left: 0;
     display: inline;
   }
   #sort-links-list li {
     display: inline;
+    margin-right: 10px;
+  }
+
+  #languages a,
+  #languages .current {
+    display: inline-block;
     margin-right: 10px;
   }
 
@@ -1648,15 +1661,13 @@ th {
   }
 
   .items.browse table th:first-child,
-  .items.browse table td:first-child,
-  .items.browse table th:nth-child(2),
-  .items.browse table td:nth-child(2) {
-    width: 30%;
+  .items.browse table td:first-child {
+    width: 60%;
     text-align: left;
   }
 
   .items.browse h3 {
-    margin-top: 0;
+    margin: 0;
   }
 
   #advanced-search-form {

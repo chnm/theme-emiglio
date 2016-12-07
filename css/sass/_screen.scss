@@ -1125,7 +1125,7 @@ div.item {
     border: 1px solid #ccc;
     background-color: #fff;
     float: left;
-    margin: 0 rhythm() rhythm() 0;
+    margin: 0 rhythm() rhythm(.5) 0;
 }
 
 .items #primary .item-file img,
@@ -1199,13 +1199,20 @@ div.item {
     }
 }
 
+#languages,
 #sort-links {
-    margin: rhythm(.25) 0 rhythm();
+    margin: rhythm(.25) 0 rhythm() rhythm();
     float: right;
 }
 
+.language-label,
+.sort-label {
+    display: inline-block;
+    margin-right: 5px;
+}
+
 #sort-links-list {
-    margin-left: 10px;
+    margin-left: 0;
     padding-left: 0;
     display: inline;
 
@@ -1213,6 +1220,12 @@ div.item {
         display: inline;
         margin-right: 10px;
     }
+}
+
+#languages a,
+#languages .current {
+    display: inline-block;
+    margin-right: 10px;
 }
 
 .asc a:after, .desc a:after {
@@ -1241,15 +1254,13 @@ div.item {
 }
 
 .items.browse table th:first-child,
-.items.browse table td:first-child,
-.items.browse table th:nth-child(2),
-.items.browse table td:nth-child(2) {
-    width: 30%;
+.items.browse table td:first-child {
+    width: 60%;
     text-align: left;
 }
 
 .items.browse h3 {
-    margin-top: 0;
+    margin: 0;
 }
 
 #advanced-search-form {

@@ -1,9 +1,10 @@
 <?php
 $pageTitle = __('Browse Documents');
+$activeLanguage = (isset($_GET['lang'])) ? $_GET['lang'] : 'rus';
 echo head(array('title'=>$pageTitle, 'bodyclass' => 'items browse'));
 ?>
 
-<div id="primary" class="browse">
+<div id="primary" class="browse <?php echo $activeLanguage; ?>">
 
     <h1><?php echo $pageTitle;?> <?php echo __('(%s total)', $total_results); ?></h1>
 
@@ -21,15 +22,19 @@ echo head(array('title'=>$pageTitle, 'bodyclass' => 'items browse'));
     $sortLinks[__('Title')] = 'Dublin Core,Title';
     $sortLinks[__('Date')] = 'Item Type Metadata,Sortable Date';
     ?>
+
     <div id="sort-links">
         <span class="sort-label"><?php echo __('Sort by: '); ?></span><?php echo browse_sort_links($sortLinks); ?>
+    </div>
+
+    <div id="languages">
+        <span class="language-label"><?php echo __('Language'); ?>: </span>
+        <?php echo rpi_language_links(); ?>
     </div>
 
     <table>
         <thead>
             <th><?php echo __('Title'); ?></th>
-            <th><?php echo __('Title (English)'); ?></th>
-            <th><?php echo __('Document ID'); ?></th>
             <th><?php echo __('Date'); ?></th>
             <th><?php echo __('Transcription'); ?></th>
             <th><?php echo __('Translation'); ?></th>
@@ -38,36 +43,43 @@ echo head(array('title'=>$pageTitle, 'bodyclass' => 'items browse'));
         <?php foreach (loop('items') as $item): ?>
             <tr class="item hentry">
                 <td class="item-meta">
-                    <h3><?php echo link_to_item(metadata($item, array('Dublin Core', 'Title'), array('class'=>'permalink'))); ?></h3>
-
-                <?php if (metadata($item, 'has thumbnail')): ?>
-                    <span class="feature"><?php echo __('Image Available'); ?></span>
+                    <?php if (metadata($item, 'has thumbnail')): ?>
                     <div class="item-img">
-                    <?php echo link_to_item(item_image('thumbnail')); ?>
+                        <?php echo link_to_item(item_image('thumbnail')); ?>
                     </div>
-                <?php endif; ?>
+                    <?php endif; ?>
+                    <?php
+                        $docID = metadata('item', array('Dublin Core', 'Identifier'));
+                        $source = '<span class="source"><strong>' . __('Source') . '</strong>: ' . $docID . '</span>';
+                        $russianTitle = metadata($item, array('Dublin Core', 'Title'), array('class'=>'permalink'));
+                        $englishTitle = metadata('item', array('Item Type Metadata', 'Title (English)'));
+                        $russianDesc = metadata('item', array('Dublin Core', 'Description'));
+                        $englishDesc = metadata('item', array('Item Type Metadata', 'Description (English)'));
+                    ?>
 
-                <?php if ($text = metadata($item, array('Item Type Metadata', 'Text'), array('snippet'=>250))): ?>
-                    <div class="item-description">
-                    <p><?php echo $text; ?></p>
-                    </div>
-                <?php elseif ($description = metadata($item, array('Dublin Core', 'Description'), array('snippet'=>250))): ?>
-                    <div class="item-description">
-                    <?php echo $description; ?>
-                    </div>
-                <?php endif; ?>
+                    <h3>
+                    <?php if (($activeLanguage == 'eng') && ($englishTitle !== '')): ?>
+                    <?php echo link_to_item($englishTitle); ?>
+                    <?php else: ?>
+                    <?php echo link_to_item($russianTitle); ?>
+                    <?php endif; ?>
+                    </h3>
 
-                <?php if (metadata($item, 'has tags')): ?>
-                    <div class="tags"><p><strong><?php echo __('Tags'); ?>: </strong>
-                    <?php echo tag_string('items'); ?></p>
+                    <?php if ($russianDesc !== ''): ?>
+                    <div class="item-description">
+                        <?php if (($activeLanguage == 'eng') && ($englishDesc !== '')): ?>
+                        <?php echo $englishDesc; ?>
+                        <?php else: ?>
+                        <?php echo $russianDesc; ?>
+                        <?php endif; ?>
                     </div>
-                <?php endif; ?>
+                    <?php endif; ?>
+
+                    <?php echo $source; ?>
 
                 <?php echo fire_plugin_hook('public_items_browse_each', array('view' => $this, 'item' =>$item)); ?>
 
                 </td><!-- end class="item-meta" -->
-                <td><?php echo ($english = metadata('item', array('Item Type Metadata', 'Title (English)'))) ? $english : ''; ?></td>
-                <td class="item-id"><?php echo ($docID = metadata('item', array('Dublin Core', 'Identifier'))) ? $docID : ''; ?></td>
                 <td class="item-date"><?php echo ($date = metadata('item', array('Dublin Core', 'Date'))) ? $date : ''; ?></td>
                 <td class="check"><?php echo (metadata($item, array('Item Type Metadata', 'Transcription')) ? '&#x2713;' : ''); ?></td>
                 <td class="check"><?php echo (metadata($item, array('Item Type Metadata', 'Translation')) ? '&#x2713;' : ''); ?></td>
