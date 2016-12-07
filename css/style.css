@@ -1453,8 +1453,12 @@ th {
     margin-bottom: 0;
   }
 
-  .items.show .metadata .element-text {
+  .items.show .metadata .element {
     margin-bottom: 1.5em;
+  }
+
+  .items.show .metadata .element-text {
+    margin-bottom: 0;
   }
 
   .items.show .document {
