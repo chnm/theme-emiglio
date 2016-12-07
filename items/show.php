@@ -19,6 +19,14 @@
         );
     ?>
     <?php echo rpi_display_custom_element_set($item, $shortElements); ?>
+
+    <?php if (metadata($item, 'has tags')): ?>
+    <div id="item-tags" class="element">
+        <h3>Tags</h3>
+        <div class="element-text tags"><?php echo tag_string('item'); ?></div>
+    </div>
+    <?php endif; ?>
+
     </div>
     <div class="long">
     <?php
