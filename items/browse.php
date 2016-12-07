@@ -43,11 +43,7 @@ echo head(array('title'=>$pageTitle, 'bodyclass' => 'items browse'));
 
                 <div class="item-meta">
                     <span><strong><?php echo __('Date'); ?>: </strong> <?php echo ($date = metadata('item', array('Dublin Core', 'Date'))) ? $date : ''; ?></span>
-                    <span><strong><?php echo __('Subject'); ?>: </strong> <?php echo ($subject = metadata('item', array('Dublin Core', 'Subject'))) ? $subject : ''; ?></span>
                     <span><strong><?php echo __('Source'); ?>:</strong> <?php echo ($docID = metadata('item', array('Dublin Core', 'Identifier'))) ? $docID : ''; ?></span>
-                    <?php if (metadata($item, 'has tags')): ?>
-                    <span><strong><?php echo __('Tags'); ?>: </strong> <?php echo tag_string('items'); ?></span>
-                    <?php endif; ?>
                 </div>
 
                 <div class="item-features">
