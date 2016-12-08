@@ -48,18 +48,17 @@ echo head(array('title'=>$pageTitle, 'bodyclass' => 'items browse'));
 
                 <div class="item-features">
                 <?php if (metadata($item, 'has thumbnail')): ?>
-                    <span class="feature"><?php echo __('Image Available'); ?></span>
                     <div class="item-img">
                     <?php echo link_to_item(item_image('thumbnail')); ?>
                     </div>
                 <?php endif; ?>
 
                 <?php if (metadata($item, array('Item Type Metadata', 'Transcription'))): ?>
-                    <span class="feature"><?php echo __('Transcription'); ?></span>
+                    <span class="transcription feature"><?php echo __('Transcription'); ?></span>
                 <?php endif; ?>
 
                 <?php if (metadata($item, array('Item Type Metadata', 'Translation'))): ?>
-                    <span class="feature"><?php echo __('Translation'); ?></span>
+                    <span class="translation feature"><?php echo __('Translation'); ?></span>
                 <?php endif; ?>
                 </div>
 

@@ -1548,8 +1548,13 @@ th {
   div.item span.feature {
     display: inline-block;
     margin: 0 0 0.75em;
-    background-color: #E2DFD3;
     padding: 0.375em;
+  }
+  div.item span.feature.transcription {
+    background-color: #e2dfd3;
+  }
+  div.item span.feature.translation {
+    background-color: #ffe599;
   }
 
   .item img {

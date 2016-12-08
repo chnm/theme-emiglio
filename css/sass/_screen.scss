@@ -1140,8 +1140,15 @@ div.item {
     span.feature {
         display: inline-block;
         margin: 0 0 rhythm(.5);
-        background-color: $sand;
         padding: rhythm(.25);
+
+        &.transcription {
+            background-color: #e2dfd3;
+        }
+
+        &.translation {
+            background-color: #ffe599;
+        }
     }
 }
 
