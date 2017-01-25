@@ -703,7 +703,8 @@ header {
 .sub-nav.open {
     display: block;
     background-color: darken($sand, 30%);
-    min-width: 150%;
+    width: max-content;
+    max-width: 300px;
 }
 
 .sub-nav.open a {

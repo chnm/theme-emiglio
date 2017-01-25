@@ -1106,7 +1106,8 @@ th {
   .sub-nav.open {
     display: block;
     background-color: #a59c77;
-    min-width: 150%;
+    width: max-content;
+    max-width: 300px;
   }
 
   .sub-nav.open a {
